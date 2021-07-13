@@ -11,4 +11,4 @@ class User(AbstractUser):
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.first_name + self.email
+        return self.name + self.email
