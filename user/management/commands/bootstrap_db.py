@@ -1,7 +1,8 @@
-from mimesis import Person, Text, Address, random
+import random
+from mimesis import Person, Text, Address
 from django.core.management.base import BaseCommand
 from user.models import User
-from job.models import CATEGORY_TYPE, Listing, SALARY_TYPE
+from job.models import CATEGORY_TYPE, JOB_TYPE, Listing, SALARY_TYPE
 
 
 class Command(BaseCommand):
@@ -37,8 +38,9 @@ class Command(BaseCommand):
                 title="testListing",
                 description=text.text(),
                 location=f"{address.city()}, {address.state()}",
-                category=random.get_random_item(CATEGORY_TYPE),
-                compensation=random.get_random_item(SALARY_TYPE)
+                category=random.choice(CATEGORY_TYPE)[0],
+                compensation=random.choice(SALARY_TYPE)[1][0][0],
+                job_type=random.choice(JOB_TYPE)[0]
             )
             self.stdout.write(self.style.SUCCESS(
                 "Sucessfully created test listing!"))
