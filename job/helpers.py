@@ -1,12 +1,13 @@
 from .models import Listing
 
-def searchAlgo(keywords):
+def searchAlgo(q):
     q_set = []
-    print(keywords, "working")
+    keywords = q.lower()
     for listing in Listing.objects.all():
-        if listing.title.find(keywords) != -1:
-          print(listing, "match")
-          q_set.append(listing)
+        title = listing.title.lower()
+        if title.find(keywords) != -1:
+            print(listing, "match")
+            q_set.append(listing)
     print(q_set)
     return q_set
         
