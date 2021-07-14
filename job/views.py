@@ -28,8 +28,8 @@ class create_listing_view(View):
         form = CreateListingForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
-                listing = form.save()
-                # instance.user = user
+                listing = form.save(commit=False)
+                listing.user = request.user
                 listing.save()
                 template = 'listing_detail.html'
                 messages.add_message(request, messages.INFO, "<p id='listing-message'>Want to create another Job Listing? Click <a href='/create/'>here</a></p>", extra_tags='safe')

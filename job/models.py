@@ -1,7 +1,7 @@
 from django.db import models
-# from user.models import User
-
 from datetime import datetime
+
+from user.models import User
 
 JOB_TYPE = (
     ('1', "Full time"),
@@ -41,8 +41,8 @@ CATEGORY_TYPE = (
   ('3', 'Fullstack')
 )
 class Listing(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
-    # applicants = models.ManyToManyField(User, symmetrical=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listing_user", default=0)
+    applicants = models.ManyToManyField(User, symmetrical=False, related_name="listing_applicants")
     title = models.CharField(max_length=300)
     description = models.TextField(max_length=1500)
     location = models.CharField(max_length=150)
