@@ -1,0 +1,27 @@
+
+</div>{% extends 'base_template.html' %}{% block content %}
+<br />
+
+<div class="listing__container">
+  <div class="listing__header">
+    <h2 id="header">{{listing.title}}</h2>
+    <a href="/profile/{{listing.user.username}}">{{listing.user.name}}</a>
+  </div>
+  <div class="listing-hero__container">
+    <h5>Description:</h5>
+    <p>{{listing.description}}</p>
+  </div>
+  <button id=listing__button>
+      <a href="/listing/{{listing.id}}/">Quick Apply</a>
+  </button>
+  <button id="favorite_button">
+      <a href="/favorite/{{listing.id}}/">{% if not favorite %}Favorite{% else %}Unfavorite{% endif %}</a>
+  </button>
+  <div class="listing-messages__container">
+  {% for message in messages %}
+    <div class="{{ message.tags }}">
+    {% if 'safe' in message.tags %}{{ message|safe }}{% else %}{{ message }}{% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div> {% endblock %}

@@ -1,0 +1,51 @@
+.create-listing__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--card-padding);
+  margin-top: 1.5rem;
+  background-color: var(--background-color);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-stack);
+  width: 100%;
+}
+
+form p {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea,
+input,
+select {
+  outline: none;
+  border: 1px solid var(--offWhite);
+  max-height: 35vh;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+  outline: 1px solid var(--light-color);
+}
+
+#create-listing__button {
+  margin-top: var(--button-marginTop);
+  padding: var(--button-padding);
+  width: 100px;
+  color: var(--offWhite);
+  outline: var(--light-color);
+  border: none;
+  background: var(--darker-color);
+  border-radius: 4px;
+  transition: var(--button-transition);
+}
+
+#create-listing__button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--button-boxShadow);
+}
