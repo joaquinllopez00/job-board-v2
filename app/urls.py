@@ -26,6 +26,7 @@ handler500 = views.handler500
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage, name="home"),
+    path("search/", job_views.search_view),
     path('create/', job_views.create_listing_view.as_view(), name="create_listing"),
     path('listing/<int:listing_id>/',
          job_views.listing_detail_view.as_view(), name="listing_detail"),

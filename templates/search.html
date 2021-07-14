@@ -1,0 +1,14 @@
+{% extends 'base_template.html' %}{% block content %}
+<br />
+
+<div class="search__container">
+
+  <p>{{results|length}} results for {{keywords}}</p>
+  {% for listing in results %}
+  <h1>{{listing.title}}</h1>
+  <p>{{listing.description}}</p>
+  {% endfor %}
+</div>
+{% endblock %}
+
+
