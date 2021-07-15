@@ -5,6 +5,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.template import RequestContext
+from django.views.generic import View
 
 
 def homepage(request):
@@ -51,5 +52,5 @@ def login_view(request):
 
 class logout_view(View):
     def get(self, request):
-    logout(request)
-    return HttpResponseRedirect(reverse('home.html'))
+        logout(request)
+        return HttpResponseRedirect(reverse('home.html'))
