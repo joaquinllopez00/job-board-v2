@@ -7,16 +7,34 @@ from .helpers import searchAlgo
 from .models import Listing
 from .forms import CreateListingForm
 # Create your views here.
-class listing_detail_view(View):
+class listing_detail_view(LoginRequiredMixin, View):
+    
 
     def get(self, request, *args, **kwargs):
-        listing_id = kwargs['listing_id']
+        
         template = 'listing_detail.html'
+        user = request.user
+        listing_id = kwargs['listing_id']
         listing = Listing.objects.get(id=listing_id)
+        if not user in listing.applicants.all():
+            print("line 19 should work")
+            print(user, listing.applicants)
         context = {
-            'listing': listing
+            'listing': listing,
+            'user': user
         }
         return render(request, template, context)
+    def post(self, request, *args, **kwargs):
+        template = 'listing_detail.html'
+        user = request.user
+        listing_id = kwargs['listing_id']
+        listing = Listing.objects.get(id=listing_id)
+        listing.applicants.add(user)
+        listing.save()
+        print(listing.applicants)
+        
+        return HttpResponseRedirect("/listing/%s" % listing.id)
+
 
 class create_listing_view(View):
     def get(self, request):

@@ -34,6 +34,15 @@
   cursor: pointer;
 }
 
+#listing__button{
+  padding: none;
+  height: 42px;
+  width: 120px;
+  color: var(--offWhite);
+  margin-left: 1rem;
+}
+
+
 #listing__button a,
 #favorite_button a {
   outline: none;
@@ -69,4 +78,31 @@
 
 #listing-message a{
   color: rgba(10,160,160);
+}
+
+#listing-quick-apply{
+  display: inline-block;
+}
+
+#listing-quick-apply button{
+  z-index: 999;
+}
+
+.listing-buttons__container {
+  display: flex;
+  height: 58px;
+  width: 20%;
+}
+
+#listing-quick-apply__message{  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: var(--button-padding);
+  margin-left: 1rem;
+}
+
+#listing-quick-apply__message p{
+  margin-bottom: 0;
 }
