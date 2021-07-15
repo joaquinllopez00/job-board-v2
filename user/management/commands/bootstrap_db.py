@@ -8,6 +8,14 @@ from job.models import CATEGORY_TYPE, JOB_TYPE, Listing, SALARY_TYPE
 class Command(BaseCommand):
     help = "Creates or adds a db w/ pseudo users & listings"
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            "-a",
+            "--amount",
+            type=int,
+            help="Amount of users & listings to create."
+        )
+
     def handle(self, *args, **options):
         person = Person()
         text = Text()
@@ -55,9 +63,15 @@ class Command(BaseCommand):
                 f"Bootstrap_db encountered error \"{error}\" and will not create a test user."))
             return
 
-        self.stdout.write("Creating many users & listings...")
+        if options['amount']:
+            self.stdout.write(
+                f"Creating {options['amount']} users & listings...")
+            amount = options['amount']
+        else:
+            self.stdout.write("Creating many users & listings...")
+            amount = 20
 
-        for _ in range(20):
+        for _ in range(amount):
 
             try:
 
