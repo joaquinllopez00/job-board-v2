@@ -62,6 +62,7 @@
           <a class="nav-link" href="/notifications/">Notifications</a>
           {% endif %}
           <a class="nav-link" href="/profile/{{request.user.username}}/">Profile</a>
+          <a class="nav-link" href="{%  url 'logout' %}">Logout</a></button>
           {% else %}
           <div class="navbar-nav">
             <a class="nav-link font-weight-bold" href="{% url 'home' %}">Home</a>

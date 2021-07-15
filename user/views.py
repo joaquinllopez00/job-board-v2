@@ -50,8 +50,7 @@ def login_view(request):
 
 def profile_view(request, username):
     user = User.objects.filter(username=username).first()
-    print(user)
-    listings = Listing.objects.filter(user=user).order_by('post_date')
+    listings = Listing.objects.filter(user=user).order_by('-post_date')
 #   notifications = views.notification_count_view(request)
     if request.user.is_authenticated:
         fave_jobs = Listing.objects.filter(favorited_by=request.user)
