@@ -69,20 +69,24 @@ class Command(BaseCommand):
                     name=person.full_name()
                 )
 
+                random_comp = random.choice(SALARY_TYPE)
+
                 Listing.objects.create(
                     user=user,
                     title=person.occupation(),
                     description=text.text(),
                     location=f"{address.city()}, {address.state()}",
                     category=random.choice(CATEGORY_TYPE)[0],
-                    compensation=random.choice(SALARY_TYPE)[1][0][0],
+                    compensation=random.choice(random_comp[1])[0],
                     job_type=random.choice(JOB_TYPE)[0]
                 )
-
-                self.stdout.write(self.style.SUCCESS(
-                    "Sucessfully created many users & listings!"))
 
             except Exception as error:
                 self.stdout.write(self.style.ERROR(
                     f"Bootstrap_db encountered error \"{error}\" and will not create any objects."))
                 return
+
+        self.stdout.write(self.style.SUCCESS(
+            "Sucessfully created many users & listings!"))
+
+        self.stdout.write(self.style.SUCCESS("All Done!"))
