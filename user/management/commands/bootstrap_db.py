@@ -9,41 +9,80 @@ class Command(BaseCommand):
     help = "Creates or adds a db w/ pseudo users & listings"
 
     def handle(self, *args, **options):
+        person = Person()
         text = Text()
         address = Address("EN")
 
-        self.stdout.write(f"Creating test user...")
+        self.stdout.write(f"Creating test objects...")
 
-        if not User.objects.filter(username='test'):
+        try:
 
-            User.objects.create_user(
-                username="test",
-                password="asdf",
-                bio=text.text(),
-                email=f'{text.word()}@{text.word()}.com',
-                name='ThisIsThe TestUser'
-            )
+            if not User.objects.filter(username="test"):
 
-            self.stdout.write(self.style.SUCCESS(
-                "Sucessfully created test user!"))
-        else:
-            self.stdout.write(self.style.WARNING(
-                'Test user already present! Skipping...'))
+                user = User.objects.create_user(
+                    username="test",
+                    password="asdf",
+                    bio=text.text(),
+                    email=f"{text.word()}@{text.word()}.com",
+                    name="ThisIsThe TestUser"
+                )
 
-        self.stdout.write(f"Creating test listing...")
+                self.stdout.write(self.style.SUCCESS(
+                    "Sucessfully created test user!"))
 
-        if not Listing.objects.filter(title='testListing'):
+                self.stdout.write(f"Creating test listing...")
 
-            Listing.objects.create(
-                title="testListing",
-                description=text.text(),
-                location=f"{address.city()}, {address.state()}",
-                category=random.choice(CATEGORY_TYPE)[0],
-                compensation=random.choice(SALARY_TYPE)[1][0][0],
-                job_type=random.choice(JOB_TYPE)[0]
-            )
-            self.stdout.write(self.style.SUCCESS(
-                "Sucessfully created test listing!"))
-        else:
-            self.stdout.write(self.style.WARNING(
-                'Test listing already present! Skipping...'))
+                if not Listing.objects.filter(title="testListing"):
+
+                    Listing.objects.create(
+                        user=user,
+                        title="testListing",
+                        description=text.text(),
+                        location=f"{address.city()}, {address.state()}",
+                        category=random.choice(CATEGORY_TYPE)[0],
+                        compensation=random.choice(SALARY_TYPE)[1][0][0],
+                        job_type=random.choice(JOB_TYPE)[0]
+                    )
+
+                    self.stdout.write(self.style.SUCCESS(
+                        "Sucessfully created test listing!"))
+            else:
+                self.stdout.write(self.style.WARNING(
+                    "Test user or listing already present! Skipping..."))
+
+        except Exception as error:
+            self.stdout.write(self.style.ERROR(
+                f"Bootstrap_db encountered error \"{error}\" and will not create a test user."))
+            return
+
+        self.stdout.write("Creating many users & listings...")
+
+        for _ in range(20):
+
+            try:
+
+                user = User.objects.create_user(
+                    username=person.username(),
+                    password=person.password(),
+                    bio=text.text(),
+                    email=f"{text.word()}@{text.word()}.com",
+                    name=person.full_name()
+                )
+
+                Listing.objects.create(
+                    user=user,
+                    title=person.occupation(),
+                    description=text.text(),
+                    location=f"{address.city()}, {address.state()}",
+                    category=random.choice(CATEGORY_TYPE)[0],
+                    compensation=random.choice(SALARY_TYPE)[1][0][0],
+                    job_type=random.choice(JOB_TYPE)[0]
+                )
+
+                self.stdout.write(self.style.SUCCESS(
+                    "Sucessfully created many users & listings!"))
+
+            except Exception as error:
+                self.stdout.write(self.style.ERROR(
+                    f"Bootstrap_db encountered error \"{error}\" and will not create any objects."))
+                return
