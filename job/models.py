@@ -43,6 +43,9 @@ CATEGORY_TYPE = (
 class Listing(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="listing_user", default=0)
     applicants = models.ManyToManyField(User, symmetrical=False, related_name="listing_applicants")
+    accepted_apps = models.ManyToManyField(User, symmetrical=False, related_name="progress")
+    interviewing_apps = models.ManyToManyField(User, symmetrical=False, related_name="interviewing")
+    denied_apps = models.ManyToManyField(User, symmetrical=False, related_name="denied")
     title = models.CharField(max_length=300)
     description = models.TextField(max_length=1500)
     location = models.CharField(max_length=150)
