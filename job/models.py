@@ -24,13 +24,13 @@ SALARY_TYPE = [
       )
   ),
   ('Hourly', (
-        ('1', "<$20/hr"),
-        ('2', "$20/hr-$25/hr"),
-        ('3', "$25/hr-$30/hr"),
-        ('4', "$30/hr-$35/hr"),
-        ('5', "$35/hr-$40/hr"),
-        ('6', "$40/hr-$50/hr"),
-        ('7', "$50/hr+"),
+        ('9', "<$20/hr"),
+        ('10', "$20/hr-$25/hr"),
+        ('11', "$25/hr-$30/hr"),
+        ('12', "$30/hr-$35/hr"),
+        ('13', "$35/hr-$40/hr"),
+        ('14', "$40/hr-$50/hr"),
+        ('15', "$50/hr+"),
       )
   ),
 ]
@@ -51,7 +51,7 @@ class Listing(models.Model):
     location = models.CharField(max_length=150)
     job_type = models.CharField(choices=JOB_TYPE, max_length=1)
     category = models.CharField(choices=CATEGORY_TYPE, max_length=1, blank=True)
-    compensation = models.CharField(choices=SALARY_TYPE, max_length=1) 
+    compensation = models.CharField(choices=SALARY_TYPE, max_length=2) 
     post_date = models.DateField(default=datetime.now().strftime("%Y-%m-%d"))
     is_open = models.BooleanField(default=True)
 
