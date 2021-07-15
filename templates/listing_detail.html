@@ -11,12 +11,33 @@
     <h5>Description:</h5>
     <p>{{listing.description}}</p>
   </div>
-  <button id=listing__button>
-      <a href="/listing/{{listing.id}}/">Quick Apply</a>
-  </button>
-  <button id="favorite_button">
+  <div class="listing-buttons__container">
+    <button type="submit" id="favorite_button">
       <a href="/favorite/{{listing.id}}/">{% if not favorite %}Favorite{% else %}Unfavorite{% endif %}</a>
   </button>
+  {% if not user in listing.applicants.all %}
+    <form id="listing-quick-apply" method="post" action="">
+    {% csrf_token %}
+      <button type="submit" id=listing__button>
+      Quick Apply
+      </button>
+    </form>
+    {% else %}
+    <div id="listing-quick-apply__message">
+      {% if user in listing.applicants.all %}
+      <p class="listing-status">Status: <strong>Applied</strong></p>
+      {% elif user in listing.accepted_apps.all %}
+      <p class="listing-status">Status: <strong> Reviewing your application</strong></p>
+      {% elif user in listing.interviewing_apps.all %}
+      <p class="listing-status">Status: <strong>Interviewing</strong></p>
+      {% elif user in listing.denied_apps.all %}
+      <p class="listing-status">Status: <strong>Rejected</strong></p>
+      {% endif %}
+      {% endif %}
+    </div>
+  
+  
+  </div>
   <div class="listing-messages__container">
   {% for message in messages %}
     <div class="{{ message.tags }}">
