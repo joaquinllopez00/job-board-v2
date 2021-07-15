@@ -46,6 +46,7 @@ class Listing(models.Model):
     accepted_apps = models.ManyToManyField(User, symmetrical=False, related_name="progress")
     interviewing_apps = models.ManyToManyField(User, symmetrical=False, related_name="interviewing")
     denied_apps = models.ManyToManyField(User, symmetrical=False, related_name="denied")
+    favorited_by = models.ManyToManyField(User, symmetrical=False, related_name="favorited_by")
     title = models.CharField(max_length=300)
     description = models.TextField(max_length=1500)
     location = models.CharField(max_length=150)

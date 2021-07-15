@@ -65,3 +65,12 @@ def search_view(request):
         'keywords': keywords,
     }
     return render(request, 'search.html', context)
+
+
+def toggle_favorite(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    if request.user in listing.favorited_by.all():
+        listing.favorited_by.remove(request.user)
+    else:
+        listing.favorited_by.add(request.user)
+    return HttpResponseRedirect(f"/listing/{listing_id}/")

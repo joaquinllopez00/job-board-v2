@@ -13,7 +13,7 @@
   </div>
   <div class="listing-buttons__container">
     <button type="submit" id="favorite_button">
-      <a href="/favorite/{{listing.id}}/">{% if not favorite %}Favorite{% else %}Unfavorite{% endif %}</a>
+      <a href="/favorite/{{listing.id}}/">{% if user in listing.favorited_by.all %}Unfavorite{% else %}Favorite{% endif %}</a>
   </button>
   {% if not user in listing.applicants.all %}
     <form id="listing-quick-apply" method="post" action="">

@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     username="test",
                     password="asdf",
                     bio=text.text(),
-                    email=f"{text.word()}@{text.word()}.com",
+                    email="test@test.com",
                     name="ThisIsThe TestUser"
                 )
 
