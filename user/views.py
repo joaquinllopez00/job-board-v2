@@ -43,7 +43,7 @@ def login_view(request):
                 request, username=data.get('username'), password=data.get('password'), email=data.get('email'))
             if user:
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get("next", "/"))
+                return HttpResponseRedirect(request.GET.get("next", reverse("home.html")))
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
@@ -52,12 +52,12 @@ def profile_view(request, username):
     user = User.objects.filter(username=username).first()
     listings = Listing.objects.filter(user=user).order_by('post_date')
 #   notifications = views.notification_count_view(request)
-#   if request.user_is_authenticated:
-    # fave_jobs = request.user.fave_jobs.all()
-#   else:
-#       fave_jobs = []
+    if request.user_is_authenticated:
+        fave_jobs = Listing.objects.filter(favorited_by=request.user)
+    else:
+        fave_jobs = []
 #   Utilize context = {'user': user, 'listings': listings, 'notifications': notifications, 'fave_job': fave_job} once Notification model/views are built
-    return render(request, 'profile.html', {'user': user, 'listings': listings})
+    return render(request, 'profile.html', {'user': user, 'listings': listings, 'fave_jobs': fave_jobs})
 
 
 class logout_view(View):
