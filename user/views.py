@@ -47,7 +47,17 @@ def login_view(request):
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
-# Class based view
+
+def profile_view(request, username):
+    user = User.objects.filter(username=username).first()
+    listings = Listing.objects.filter(user=user).order_by('post_date')
+#   notifications = views.notification_count_view(request)
+#   if request.user_is_authenticated:
+    # fave_jobs = request.user.fave_jobs.all()
+#   else:
+#       fave_jobs = []
+#   Utilize context = {'user': user, 'listings': listings, 'notifications': notifications, 'fave_job': fave_job} once Notification model/views are built
+    return render(request, 'profile.html', {'user': user, 'listings': listings})
 
 
 class logout_view(View):
