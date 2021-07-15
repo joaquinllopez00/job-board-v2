@@ -43,16 +43,17 @@ def login_view(request):
                 request, username=data.get('username'), password=data.get('password'), email=data.get('email'))
             if user:
                 login(request, user)
-                return HttpResponseRedirect(request.GET.get("next", reverse("home.html")))
+                return HttpResponseRedirect(request.GET.get("next", reverse("home")))
     form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
 
 def profile_view(request, username):
     user = User.objects.filter(username=username).first()
+    print(user)
     listings = Listing.objects.filter(user=user).order_by('post_date')
 #   notifications = views.notification_count_view(request)
-    if request.user_is_authenticated:
+    if request.user.is_authenticated:
         fave_jobs = Listing.objects.filter(favorited_by=request.user)
     else:
         fave_jobs = []
