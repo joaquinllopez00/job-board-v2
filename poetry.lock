@@ -47,6 +47,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "mimesis"
+version = "4.1.3"
+description = "Mimesis: fake data generator."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pycodestyle"
 version = "2.7.0"
 description = "Python style guide checker"
@@ -81,7 +89,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "3d03d1321bfb93da443d8b8614618dea96f7e94de2461042fc550bea6b7aab29"
+content-hash = "b403249a1e88105b0f30a31bee22140028a058c385fae7f33cf797d5dd7258f5"
 
 [metadata.files]
 asgiref = [
@@ -99,6 +107,9 @@ django = [
 django-dotenv = [
     {file = "django-dotenv-1.4.2.tar.gz", hash = "sha256:3812bb0f4876cf31f902aad140f0645e120e51ee30eb7c40c22050f58a0e4adb"},
     {file = "django_dotenv-1.4.2-py2.py3-none-any.whl", hash = "sha256:a9b1b40a70bd321acd231926acedb9bd2c5e873e33a1873b34a7276d196a765e"},
+]
+mimesis = [
+    {file = "mimesis-4.1.3.tar.gz", hash = "sha256:90f36c21c1bb9944afc17178eb5868b0c85aa1fe49eb04bcbdafafd1ad4ca2ba"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.7.0-py2.py3-none-any.whl", hash = "sha256:514f76d918fcc0b55c6680472f0a37970994e07bbb80725808c17089be302068"},
