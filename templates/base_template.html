@@ -31,47 +31,46 @@
           JobCentric</a
         >
 
-    <div class="search">
+    <div class=" search">
       <form method="GET" action="/search/" id="search__form">
-        <input id="search__input" placeholder="Search for jobs..." name="query" type="text" >
+        <input id="search__input" placeholder="Search for jobs..." name="query" type="text">
         <button type="submit" id="search-submit__button">
           Go
         </button>
-      
+
       </form>
-    </div>
-        {% else %}
-        <a
-          class=" navbar-brand" href="/" style="font-size: 25px">JobCentric</a>
-    <div class="search">
-      <input id="search__input" type="text" />
-    </div>
-    {% endif %}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-      {% if request.user.is_authenticated %}
-      <div class="navbar-nav">
-        <a class="nav-link font-weight-bold" href="/create/">Post Job</a>
-        {% if notifications %}
-        <a class="nav-link font-weight-bold" href="/notifications/">Notifications
-          <span class="badge badge-pill badge-light">{{notifications}}</span></a>
-        {% else %}
-        <a class="nav-link" href="/notifications/">Notifications</a>
-        {% endif %}
-        <a class="nav-link" href="/profile/{{request.user.username}}/">Profile</a>
-        {% else %}
-        <div class="navbar-nav">
-          <a class="nav-link font-weight-bold" href="/">Home</a>
-          <a class="nav-link font-weight-bold" href="/login/">Log In</a>
-          <!-- <a class="nav-link font-weight-bold" href="/register/employee/">Employee Sign Up</a>
-          <a class="nav-link font-weight-bold" href="/register/employer/">Employer Sign Up</a> -->
-        </div>
-        {% endif %}
       </div>
+      {% else %}
+      <a class=" navbar-brand" href="/" style="font-size: 25px">JobCentric</a>
+      <div class="search">
+        <input id="search__input" type="text" />
+      </div>
+      {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        {% if request.user.is_authenticated %}
+        <div class="navbar-nav">
+          <a class="nav-link font-weight-bold" href="/create/">Post Job</a>
+          {% if notifications %}
+          <a class="nav-link font-weight-bold" href="/notifications/">Notifications
+            <span class="badge badge-pill badge-light">{{notifications}}</span></a>
+          {% else %}
+          <a class="nav-link" href="/notifications/">Notifications</a>
+          {% endif %}
+          <a class="nav-link" href="/profile/{{request.user.username}}/">Profile</a>
+          {% else %}
+          <div class="navbar-nav">
+            <a class="nav-link font-weight-bold" href="{% url 'home' %}">Home</a>
+            <a class="nav-link font-weight-bold" href="/login/">Log In</a>
+            <!-- <a class="nav-link font-weight-bold" href="/register/employee/">Employee Sign Up</a>
+          <a class="nav-link font-weight-bold" href="/register/employer/">Employer Sign Up</a> -->
+          </div>
+          {% endif %}
+        </div>
   </nav>
   </div>
 
