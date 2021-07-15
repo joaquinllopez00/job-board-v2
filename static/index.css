@@ -47,3 +47,53 @@ a {
 nav {
   background-color: var(--light-color);
 }
+
+.search {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: relative;
+}
+
+#search__form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  
+}
+
+#search__input{
+  width: 65%;
+  font-family: var(--font-stack);
+  background-color: var(--offWhite);
+  padding: 0.2rem;
+}
+
+#search-submit__button{  
+  border-radius: 50%;
+  right: 0;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  right: 18%;
+  border: none;
+  background-color: var(--light-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--offWhite);
+  transition: var(--button-transition);
+}
+
+#search-submit__button:hover{
+  box-shadow: var(--button-boxShadow);
+  background-color: var(--offWhite);
+  color: var(--light-color);
+  border: 1px solid var(--light-color);
+}

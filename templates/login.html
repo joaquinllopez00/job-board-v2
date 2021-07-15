@@ -1,8 +1,14 @@
-<button><a href="/">Home</a></button> |
-<button><a href="/signup/">Sign Up</a></button>
+{% extends 'base_template.html' %}{% block content %}
 
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Log In</button>
-</form>
+
+<div class="full-page-center__container">
+		<div class="auth__container">
+      <h2>Log In</h2>
+				<form action="" method="post">
+				{% csrf_token %}{{form.as_p}}
+				<input type="submit" value="Log In" id="auth__button"/>
+				</form>
+        <p id="auth-redirect">Don't have an account? Click <a href="/signup/">here</a></p>
+		</div>
+{% endblock %}
+  </div>

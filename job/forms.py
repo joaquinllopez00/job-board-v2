@@ -25,7 +25,7 @@ class CreateListingForm(forms.ModelForm):
         )
         self.fields['location'].widget.attrs.update(
             {
-                'placeholder': 'eg : Bangladesh',
+                'placeholder': 'eg : Indianapolis',
             }
         )
     class Meta:
