@@ -49,6 +49,7 @@ def login_view(request):
 # Class based view
 
 
-def logout_view(request):
+class logout_view(View):
+    def get(self, request):
     logout(request)
     return HttpResponseRedirect(reverse('home.html'))
