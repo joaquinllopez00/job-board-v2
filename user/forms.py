@@ -14,3 +14,5 @@ class SignUpForm(forms.Form):
     name = forms.CharField(max_length=150)
     email = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
+
+# class EditProfileForm(forms.Form):
