@@ -5,7 +5,7 @@ from .models import *
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
 from django.template import RequestContext
-from django.views.generic import View
+from django.views.generic import RedirectView
 
 
 def homepage(request):
@@ -60,7 +60,10 @@ def profile_view(request, username):
     return render(request, 'profile.html', {'user': user, 'listings': listings, 'fave_jobs': fave_jobs})
 
 
-class logout_view(View):
-    def get(self, request):
-        logout(request)
-        return HttpResponseRedirect(reverse('home.html'))
+class logout_view(RedirectView):
+    permanent = False
+    query_string = True
+
+    def get_redirect_url(self):
+        logout(self.request)
+        return reverse("home")

@@ -18,7 +18,7 @@ from django.http import request
 from django.urls import path
 from user import views
 from job import views as job_views
-from django.conf.urls import (handler404, handler500)
+from django.conf.urls import (handler404, handler500, url)
 
 handler404 = views.handler404
 handler500 = views.handler500
@@ -32,7 +32,7 @@ urlpatterns = [
          job_views.listing_detail_view.as_view(), name="listing_detail"),
     path("signup/", views.signup_view, name="signup"),
     path('login/', views.login_view, name="login"),
-    path('logout/', views.logout_view, name="logout"),
+    url(r'^logout/$', views.logout_view.as_view(), name="logout"),
     path('profile/<str:username>/', views.profile_view, name="profile"),
     path('favorite/<int:listing_id>/',
          job_views.toggle_favorite, name="favorite"),
