@@ -12,3 +12,4 @@ https://docs.djangoproject.com/en/3.2/topics/auth/customizing/
 https://docs.djangoproject.com/en/3.2/ref/request-response/ 
 https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/ 
 https://docs.djangoproject.com/en/3.2/ref/urlresolvers/
+https://projects.verou.me/css3patterns/#lined-paper

@@ -1,11 +1,11 @@
 {% extends 'base_template.html' %}{% block content %}
 <br />
 
-<div class="search__container">
+<div class="search__container" style="padding-left: 7px; color:white;">
   <p>{{results|length}} results for <strong>{{keywords}}</strong></p>
   <div class="search-noads__container">  
     {% for listing in results %}
-    <div class="search-listing__container">
+    <div class="search-listing__container" style="color:white;">
       <h1>{{listing.title}}</h1>
       <p>{{listing.description}}</p>
       <div class="search-footer__container">
