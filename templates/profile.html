@@ -1,1 +1,13 @@
-<h1>Profile for {{user.username}}</h1>
+<!-- {% extends 'base_template.html' %}{% block content %} -->
+<form method="post" action="">
+  {% csrf_token %}
+  <table>{{form.as_table}}
+    {% for u in users %}
+    <p>Name : {{u.name}} | Username : {{u.username}}</p>
+    <p>Email: {{u.email}} | Phone Number: {{u.contact_num}}</p>
+    <p>Bio: {{u.bio}}</p>
+    <p>Work Experience: {{u.experience}} | Skills: {{u.skills}}</p>
+    {% endfor %}
+  </table>
+</form>
+<!-- {% endblock %} -->

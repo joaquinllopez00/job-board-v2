@@ -1,5 +1,6 @@
 from django import forms
 from .models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 class LoginForm(forms.Form):
@@ -15,4 +16,8 @@ class SignUpForm(forms.Form):
     email = forms.CharField(max_length=100)
     password = forms.CharField(widget=forms.PasswordInput)
 
-# class EditProfileForm(forms.Form):
+
+class EditProfileForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = "__all__"
