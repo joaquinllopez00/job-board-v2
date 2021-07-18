@@ -1,8 +1,8 @@
-<!-- {% extends 'base_template.html' %}{% block content %} -->
+{% extends 'base_template.html' %}{% block content %}
 <form method="post" action="">
   {% csrf_token %}
   <table>{{form.as_table}}
-    {% for u in users %}
+    {% for u in user %}
     <p>Name : {{u.name}} | Username : {{u.username}}</p>
     <p>Email: {{u.email}} | Phone Number: {{u.contact_num}}</p>
     <p>Bio: {{u.bio}}</p>
@@ -11,4 +11,4 @@
     <input type="submit" class="btn btn-success" />
   </table>
 </form>
-<!-- {% endblock %} -->
+{% endblock %}
