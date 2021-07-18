@@ -34,6 +34,7 @@ urlpatterns = [
     path('login/', views.login_view, name="login"),
     url(r'^logout/$', views.logout_view.as_view(), name="logout"),
     path('profile/<str:username>/', views.profile_view, name="profile"),
+    path('profile/<int:id>/edit/', views.edit_profile, name="edit_profile"),
     path('favorite/<int:listing_id>/',
          job_views.toggle_favorite, name="favorite"),
 ]
