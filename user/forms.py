@@ -20,4 +20,4 @@ class SignUpForm(forms.Form):
 class EditProfileForm(UserCreationForm):
     class Meta:
         model = User
-        fields = "__all__"
+        fields = "username", "name", "email", "bio", "experience", "skills", "contact_num"

@@ -4,6 +4,7 @@ from job.models import Listing
 from .models import *
 from .forms import *
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.views.generic import RedirectView
 
@@ -49,7 +50,7 @@ def login_view(request):
 
 
 def profile_view(request, username):
-    user = User.objects.filter(username=username).first()
+    user = User.objects.filter(username=username)
     listings = Listing.objects.filter(user=user).order_by('-post_date')
 #   notifications = views.notification_count_view(request)
     if request.user.is_authenticated:
@@ -60,20 +61,21 @@ def profile_view(request, username):
     return render(request, 'profile.html', {'user': user, 'listings': listings, 'fave_jobs': fave_jobs})
 
 
+@login_required
 def edit_profile(request, id):
     prof = User.objects.get(id=id)
     if request.method == "POST":
         form = EditProfileForm(request.POST)
-        data = form.data
-        prof.name = data["name"]
-        prof.username = data["username"]
-        prof.email = data["email"]
-        prof.bio = data["bio"]
-        prof.experience = data["experience"]
-        prof.skills = data["skills"]
-        prof.contact_num = data["contact_num"]
-        prof.save()
-
+        if form.is_valid():
+            data = form.cleaned_data
+            prof.name = data["name"]
+            prof.username = data["username"]
+            prof.email = data["email"]
+            prof.bio = data["bio"]
+            prof.experience = data["experience"]
+            prof.skills = data["skills"]
+            prof.contact_num = data["contact_num"]
+            prof.save()
         return HttpResponseRedirect(reverse("home"))
     form = EditProfileForm(initial={
         'name': prof.name,
