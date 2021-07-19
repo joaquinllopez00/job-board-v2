@@ -105,3 +105,102 @@
 #listing-quick-apply__message p {
   margin-bottom: 0;
 }
+
+.listing-creator__container {
+  background-color: var(--light-color);
+  padding: var(--card-padding);
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+}
+
+.listing-creator__container h6 {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  font-weight: var(--heavyFontwieght);
+  color: rgba(230, 230, 230, 0.1);
+}
+
+.listing-creator-applicants__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+  justify-items: center;
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.listing__subContainer {
+  background-color: var(--background-color);
+  padding: var(--card-padding);
+  border-radius: 10px;
+  border: 1px solid var(--darker-color);
+  width: 300px;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 1200px) {
+  .listing-creator-applicants__container {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .listing-creator-applicants__container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.listing__subContainer h5 {
+  color: var(--offWhite);
+  font-weight: var(--heavyFontwieght);
+}
+
+.listing-list__container {
+  background-color: rgba(230, 230, 230, 0.1);
+  display: flex;
+  height: 50px;
+  padding: 0 0.4rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0rem;
+}
+
+.listing-list__container a {
+  outline: none;
+  text-decoration: none;
+  color: aquamarine;
+}
+
+#list-button,
+#reject {
+  outline: none;
+  border: none;
+  background-color: var(--background-color);
+  border-radius: 3px;
+  font-family: var(--font-stack);
+  transition: var(--button-transition);
+  padding: 0.4rem;
+}
+
+#list-button {
+  color: rgb(11, 211, 67);
+}
+
+#list-button:hover {
+  box-shadow: 0px 0px 10px rgb(11, 211, 67);
+}
+
+#reject {
+  color: #ee1d52;
+}
+
+#reject:hover {
+  box-shadow: 0px 0px 10px rgb(249, 68, 68);
+}
