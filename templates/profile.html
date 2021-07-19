@@ -2,12 +2,10 @@
 <form method="post" action="">
   {% csrf_token %}
   <table>{{form.as_table}}
-    {% for u in user %}
-    <p>Name : {{u.name}} | Username : {{u.username}}</p>
-    <p>Email: {{u.email}} | Phone Number: {{u.contact_num}}</p>
-    <p>Bio: {{u.bio}}</p>
-    <p>Work Experience: {{u.experience}} | Skills: {{u.skills}}</p>
-    {% endfor %}
+    <p>Name : {{user.name}} | Username : {{user.username}}</p>
+    <p>Email: {{user.email}} | Phone Number: {{user.contact_num}}</p>
+    <p>Bio: {{user.bio}}</p>
+    <p>Work Experience: {{user.experience}} | Skills: {{user.skills}}</p>
     <input type="submit" class="btn btn-success" />
   </table>
 </form>

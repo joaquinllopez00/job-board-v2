@@ -64,16 +64,16 @@ def edit_profile(request, id):
     prof = User.objects.get(id=id)
     if request.method == "POST":
         form = EditProfileForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            prof.name = data["name"]
-            prof.username = data["username"]
-            prof.email = data["email"]
-            prof.bio = data["bio"]
-            prof.experience = data["experience"]
-            prof.skills = data["skills"]
-            prof.contact_num = data["contact_num"]
-            prof.save()
+        data = form.data
+        prof.name = data["name"]
+        prof.username = data["username"]
+        prof.email = data["email"]
+        prof.bio = data["bio"]
+        prof.experience = data["experience"]
+        prof.skills = data["skills"]
+        prof.contact_num = data["contact_num"]
+        prof.save()
+
         return HttpResponseRedirect(reverse("home"))
     form = EditProfileForm(initial={
         'name': prof.name,
