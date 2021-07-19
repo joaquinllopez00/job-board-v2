@@ -6,7 +6,10 @@
     <p>Email: {{user.email}} | Phone Number: {{user.contact_num}}</p>
     <p>Bio: {{user.bio}}</p>
     <p>Work Experience: {{user.experience}} | Skills: {{user.skills}}</p>
-    <input type="submit" class="btn btn-success" />
+    <button><a class="nav-link font-weight-bold" href="/profile/{{request.user.id}}/edit/">Edit
+        Profile</a></button>
   </table>
 </form>
 {% endblock %}
+
+<!-- Listings and favorite jobs to be added -->
