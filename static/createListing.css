@@ -4,7 +4,7 @@
   align-items: center;
   padding: var(--card-padding);
   margin-top: 1.5rem;
-  background-color: var(--background-color);
+  background-color: var(--light-color);
 }
 
 form {
@@ -38,9 +38,9 @@ select:focus {
   padding: var(--button-padding);
   width: 100px;
   color: var(--offWhite);
-  outline: var(--light-color);
+  outline: var(--offWhite);
   border: none;
-  background: var(--darker-color);
+  background: var(--background-color);
   border-radius: 4px;
   transition: var(--button-transition);
 }
