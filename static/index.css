@@ -10,9 +10,10 @@ body {
   --light-fontWeight: 100;
   --heavy-fontWeight: 400;
   --font-logo: "Montseratt", sans-serif;
-  --background-color: rgb(240, 240, 240);
-  --light-color: #2dd8cd;
-  --darker-color: #2dd8cdf0;
+  --background-color: #0b0c10;
+  /* --light-color: #2dd8cd; */
+  --light-color: #1f2833;
+  --darker-color: rgb(31, 40, 51, 0.5);
   --offWhite: rgb(250, 250, 250);
   --offBlack: rgb(30, 30, 30);
   --card-padding: 2rem;
@@ -20,7 +21,7 @@ body {
   --card-subContainer-padding: 1rem;
   --card-marginTop: 1.5rem;
   --container-borderRadius: 10px;
-  --button-boxShadow: 0px 5px 10px var(--light-color);
+  --button-boxShadow: 0px 5px 10px var(--background-color);
   --button-transition: all 0.2s ease;
   --button-marginTop: 1rem;
   --button-padding: 0.5rem;
@@ -35,7 +36,7 @@ h6,
 p {
   font-family: var(--font-stack);
   font-weight: var(--light-fontWeight);
-  color: var(--offBlack);
+  color: var(--offWhite);
 }
 
 a {
@@ -54,28 +55,27 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   position: relative;
 }
 
-#search__form{
+#search__form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
-  
 }
 
-#search__input{
+#search__input {
   width: 65%;
   font-family: var(--font-stack);
   background-color: var(--offWhite);
   padding: 0.2rem;
 }
 
-#search-submit__button{  
+#search-submit__button {
   border-radius: 50%;
   right: 0;
   height: 30px;
@@ -91,9 +91,22 @@ nav {
   transition: var(--button-transition);
 }
 
-#search-submit__button:hover{
+#search-submit__button:hover {
   box-shadow: var(--button-boxShadow);
   background-color: var(--offWhite);
   color: var(--light-color);
   border: 1px solid var(--light-color);
+}
+
+.error__container {
+  background-color: var(--light-color);
+  padding: var(--card-padding);
+  margin-top: 1rem;
+}
+
+.error__container a {
+  color: var(--background-color);
+  font-style: italic;
+  outline: none;
+  text-decoration: none;
 }

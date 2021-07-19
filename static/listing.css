@@ -1,5 +1,5 @@
 .listing__container {
-  background-color: var(--background-color);
+  background-color: var(--light-color);
   padding: var(--card-padding);
   margin-top: 1.5rem;
   border-radius: 10px;
@@ -21,7 +21,7 @@
   margin-top: 1rem;
   padding: 1rem;
   border-radius: 3px;
-  background-color: rgba(230, 230, 230, 0.4);
+  background-color: rgba(230, 230, 230, 0.1);
 }
 
 #listing__button,
@@ -29,19 +29,18 @@
   margin-top: 1rem;
   transition: var(--button-transition);
   border: none;
-  background: var(--darker-color);
+  background: var(--background-color);
   border-radius: 4px;
   cursor: pointer;
 }
 
-#listing__button{
+#listing__button {
   padding: none;
   height: 42px;
   width: 120px;
   color: var(--offWhite);
   margin-left: 1rem;
 }
-
 
 #listing__button a,
 #favorite_button a {
@@ -76,15 +75,15 @@
   color: var(--darker-color);
 }
 
-#listing-message a{
-  color: rgba(10,160,160);
+#listing-message a {
+  color: rgba(10, 160, 160);
 }
 
-#listing-quick-apply{
+#listing-quick-apply {
   display: inline-block;
 }
 
-#listing-quick-apply button{
+#listing-quick-apply button {
   z-index: 999;
 }
 
@@ -94,7 +93,7 @@
   width: 20%;
 }
 
-#listing-quick-apply__message{  
+#listing-quick-apply__message {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,6 +102,6 @@
   margin-left: 1rem;
 }
 
-#listing-quick-apply__message p{
+#listing-quick-apply__message p {
   margin-bottom: 0;
 }
