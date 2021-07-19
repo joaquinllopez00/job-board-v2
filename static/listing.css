@@ -166,6 +166,7 @@
   background-color: rgba(230, 230, 230, 0.1);
   display: flex;
   height: 50px;
+  border-radius: 3px;
   padding: 0 0.4rem;
   align-items: center;
   justify-content: space-between;
@@ -179,7 +180,8 @@
 }
 
 #list-button,
-#reject {
+#reject,
+#hired-button {
   outline: none;
   border: none;
   background-color: var(--background-color);
@@ -189,11 +191,18 @@
   padding: 0.4rem;
 }
 
-#list-button {
+#list-button,
+#hired-button {
   color: rgb(11, 211, 67);
 }
 
-#list-button:hover {
+#hired-button {
+  padding: 0.25rem 0.4rem;
+  margin-bottom: 1px;
+}
+
+#list-button:hover,
+#hired-button:hover {
   box-shadow: 0px 0px 10px rgb(11, 211, 67);
 }
 
