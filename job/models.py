@@ -45,6 +45,8 @@ class Listing(models.Model):
     applicants = models.ManyToManyField(User, symmetrical=False, related_name="listing_applicants")
     accepted_apps = models.ManyToManyField(User, symmetrical=False, related_name="progress")
     interviewing_apps = models.ManyToManyField(User, symmetrical=False, related_name="interviewing")
+    offer_extended_apps = models.ManyToManyField(User, symmetrical=False, related_name="offered")
+    hired_apps = models.ManyToManyField(User, symmetrical=False, related_name="hired")
     denied_apps = models.ManyToManyField(User, symmetrical=False, related_name="denied")
     favorited_by = models.ManyToManyField(User, symmetrical=False, related_name="favorited_by")
     title = models.CharField(max_length=300)
