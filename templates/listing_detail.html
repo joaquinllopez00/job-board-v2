@@ -16,7 +16,7 @@
     <button type="submit" id="favorite_button">
       <a href="/favorite/{{listing.id}}/">{% if user in listing.favorited_by.all %}Unfavorite{% else %}Favorite{% endif %}</a>
   </button>
-  {% if not user in listing.applicants.all and user not in listing.accepted_apps.all and user not in listing.interviewing_apps.all and user not in listing.offer_extended_apps.all and user not in listing.hired_apps.all %}
+  {% if not user in listing.applicants.all and user not in listing.accepted_apps.all and user not in listing.interviewing_apps.all and user not in listing.offer_extended_apps.all and user not in listing.hired_apps.all and user not in listing.denied_apps.all %}
     {% if not user.username == listing.user.username %}
     <form id="listing-quick-apply" method="post" action="">
     {% csrf_token %}
@@ -36,16 +36,12 @@
       <p class="listing-status">Status: <strong> Accepted</strong></p>
       {% elif user in listing.interviewing_apps.all %}
       <p class="listing-status">Status: <strong>Interviewing</strong></p>
-      {% elif user in listing.denied_apps.all %}
-      <p class="listing-status">Status: <strong>Rejected</strong></p>
-      
       {% elif user in listing.offer_extended_apps.all %}
       <p class="listing-status">Status: <strong>Offer Extended</strong></p>
-      
       {% elif user in listing.hired_apps.all %}
       <p class="listing-status">Status: <strong>Hired</strong></p>
       {% else %}
-
+      <p class="listing-status">Status: <strong>Rejected</strong></p>
       {% endif %}
   {% endif %}
     </div>
@@ -111,7 +107,7 @@
             <div class="listing-list__container">
               <a href="/profile/{{applicant.username}}">{{applicant.username}}</a>
               <div class="listing-list__buttons">
-                <a href="/hired-applicant/{{listing.id}}/{{applicant.id}}" id="list-button">Move-on</a>
+                <button href="/hired-applicant/{{listing.id}}/{{applicant.id}}" id="hired-button" disabled>Hired</button>
                 <a href="/reject/{{listing.id}}/{{applicant.id}}" id="Reject">Reject</a>
               </div>
             </div>

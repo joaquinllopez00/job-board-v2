@@ -51,7 +51,7 @@ input:focus {
 }
 
 #auth-redirect a {
-  color: var(--background-color);
+  color: aquamarine;
   font-weight: var(--heavy-fontWeight);
 }
 
