@@ -53,8 +53,11 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
         {% if request.user.is_authenticated %}
+
         <div class="navbar-nav">
+          {% if request.user.employee == '2' %}
           <a class="nav-link font-weight-bold" href="/create/">Post Job</a>
+          {% endif %}
           {% if notifications %}
           <a class="nav-link font-weight-bold" href="/notifications/">Notifications
             <span class="badge badge-pill badge-light">{{notifications}}</span></a>
