@@ -17,6 +17,7 @@
   margin-top: 1.5rem;
   background-color: var(--light-color);
   width: 400px;
+  border-radius: 10px;
 }
 
 .auth__container h2,
@@ -71,4 +72,12 @@ input:focus {
 #auth__button:hover {
   transform: translateY(-2px);
   box-shadow: var(--button-boxShadow);
+}
+
+#id_employee {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  justify-content: flex-start;
+  padding: 0;
 }

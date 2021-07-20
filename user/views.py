@@ -28,7 +28,8 @@ def signup_view(request):
         if form.is_valid():
             data = form.cleaned_data
             new_user = User.objects.create_user(
-                username=data.get("username"), password=data.get("password"), email=data.get('email'))
+                username=data.get("username"), password=data.get("password"), email=data.get('email'), name=data.get('name'), employee=data.get('employee'))
+            return HttpResponseRedirect("/login/")
     form = SignUpForm()
     return render(request, 'signup.html', {"form": form})
 
@@ -50,7 +51,8 @@ def login_view(request):
 
 
 def profile_view(request, username):
-    user = User.objects.filter(username=username)
+    user = User.objects.get(username=username)
+    print(user)
     listings = Listing.objects.filter(user=user).order_by('-post_date')
 #   notifications = views.notification_count_view(request)
     if request.user.is_authenticated:

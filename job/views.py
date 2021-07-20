@@ -25,6 +25,7 @@ class listing_detail_view(LoginRequiredMixin, View):
             'listing': listing,
             'user': user
         }
+        print('WORKING?', request, template, context)
         return render(request, template, context)
 
     def post(self, request, *args, **kwargs):
