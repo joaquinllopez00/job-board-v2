@@ -66,19 +66,20 @@ def profile_view(request, username):
 @login_required
 def edit_profile(request, id):
     prof = User.objects.get(id=id)
+    
     if request.method == "POST":
         form = EditProfileForm(request.POST)
+        print(form.is_valid(), form.errors)
         if form.is_valid():
             data = form.cleaned_data
-            prof.name = data["name"]
-            prof.username = data["username"]
-            prof.email = data["email"]
+            print('data')
+            prof.name = data["name"]            
             prof.bio = data["bio"]
             prof.experience = data["experience"]
             prof.skills = data["skills"]
             prof.contact_num = data["contact_num"]
             prof.save()
-        return HttpResponseRedirect(reverse("home"))
+        return HttpResponseRedirect("/profile/%s" % prof.username)
     form = EditProfileForm(initial={
         'name': prof.name,
         'username': prof.username,
@@ -88,7 +89,7 @@ def edit_profile(request, id):
         'skills': prof.skills,
         'contact_num': prof.contact_num,
     })
-    return render(request, "profile.html", {"form": form})
+    return render(request, "edit_profile.html", {"form": form})
 
 
 class logout_view(RedirectView):

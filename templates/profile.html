@@ -1,5 +1,47 @@
 {% extends 'base_template.html' %}{% block content %}
-<form method="post" action="">
+<div class="profile__container">
+  <div class="profile-info">
+    <div class="profile-header__container">
+      <h1>{{user.name}}</h1>
+      <p>{{user.username}}</p>
+    </div>
+    {% if request.user == user or request.user.employee == '2' %}
+    <div class="profile-contact__container">
+      <h3>Contact Info:</h3>
+      <p>
+        {% if user.employee == '1' %}Personal {% endif %}Email:
+        <a href="mailto:{{user.email}}" target="_blanks">{{user.email}}</a>
+      </p>
+      {% if user.contact_num %}
+      <p>{% if user.employee == '1' %}Personal {% endif %} Phone Number: {{user.contact_num}}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  <hr />
+  <div class="profile-personal__container">
+    <div class="profile-bio profile">
+      <p>Bio:</p>
+      <p>{{user.bio}}</p>
+    </div>
+    <div class="profile-experience profile">
+      <p>Experience:</p>
+      <p>{{user.experience}}</p>
+    </div>
+    <div class="profile-skills profile">
+      <p>Skills:</p>
+      <p>{{user.skills}}</p>
+    </div>
+  </div>
+  <a id="edit-profile" class="nav-link font-weight-bold" href="/profile/{{request.user.id}}/edit">Edit Profile</a>
+</div>
+
+{% endblock %}
+
+<!-- Listings and favorite jobs to be added -->
+
+<!-- refactor into own template -->
+<!-- <form method="post" action="">
   {% csrf_token %}
   <table>
     {{form.as_table}}
@@ -9,7 +51,4 @@
     <p>Work Experience: {{user.experience}} | Skills: {{user.skills}}</p>
     <button><a class="nav-link font-weight-bold" href="/profile/{{request.user.id}}/edit">Edit Profile</a></button>
   </table>
-</form>
-{% endblock %}
-
-<!-- Listings and favorite jobs to be added -->
+</form> -->
