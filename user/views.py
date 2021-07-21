@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, reverse, HttpResponseRedirect
 from job.models import Listing
 from .models import *
 from .forms import *
+from .helpers import listing_tracker
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -55,12 +56,24 @@ def profile_view(request, username):
     print(user)
     listings = Listing.objects.filter(user=user).order_by('-post_date')
 #   notifications = views.notification_count_view(request)
+    applied, accepted,interviewing, offer_extended, hired, reject = listing_tracker(request.user)
+    print(applied)
     if request.user.is_authenticated:
         fave_jobs = Listing.objects.filter(favorited_by=request.user)
     else:
         fave_jobs = []
-#   Utilize context = {'user': user, 'listings': listings, 'notifications': notifications, 'fave_job': fave_job} once Notification model/views are built
-    return render(request, 'profile.html', {'user': user, 'listings': listings, 'fave_jobs': fave_jobs})
+    context = {
+        'user': user,
+        'listings': listings,
+        'fave_jobs': fave_jobs,
+        'applied': applied,
+        'accepted': accepted,
+        'interviewing': interviewing,
+        'offer_extended': offer_extended,
+        'hired': hired,
+        'reject': reject
+    }
+    return render(request, 'profile.html', context)
 
 
 @login_required

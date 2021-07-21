@@ -17,7 +17,7 @@
       <a href="/favorite/{{listing.id}}/">{% if user in listing.favorited_by.all %}Unfavorite{% else %}Favorite{% endif %}</a>
   </button>
   {% if not user in listing.applicants.all and user not in listing.accepted_apps.all and user not in listing.interviewing_apps.all and user not in listing.offer_extended_apps.all and user not in listing.hired_apps.all and user not in listing.denied_apps.all %}
-    {% if not user.username == listing.user.username %}
+    {% if not user.username == listing.user.username and user.employee != '2' %}
     <form id="listing-quick-apply" method="post" action="">
     {% csrf_token %}
   
