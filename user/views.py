@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, reverse, HttpResponseRedirect
 from job.models import Listing
 from .models import *
 from .forms import *
+from .helpers import listing_tracker
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -28,7 +29,8 @@ def signup_view(request):
         if form.is_valid():
             data = form.cleaned_data
             new_user = User.objects.create_user(
-                username=data.get("username"), password=data.get("password"), email=data.get('email'))
+                username=data.get("username"), password=data.get("password"), email=data.get('email'), name=data.get('name'), employee=data.get('employee'))
+            return HttpResponseRedirect("/login/")
     form = SignUpForm()
     return render(request, 'signup.html', {"form": form})
 
@@ -50,33 +52,47 @@ def login_view(request):
 
 
 def profile_view(request, username):
-    user = User.objects.filter(username=username)
+    user = User.objects.get(username=username)
+    print(user)
     listings = Listing.objects.filter(user=user).order_by('-post_date')
 #   notifications = views.notification_count_view(request)
+    applied, accepted,interviewing, offer_extended, hired, reject = listing_tracker(request.user)
+    print(applied)
     if request.user.is_authenticated:
         fave_jobs = Listing.objects.filter(favorited_by=request.user)
     else:
         fave_jobs = []
-#   Utilize context = {'user': user, 'listings': listings, 'notifications': notifications, 'fave_job': fave_job} once Notification model/views are built
-    return render(request, 'profile.html', {'user': user, 'listings': listings, 'fave_jobs': fave_jobs})
+    context = {
+        'user': user,
+        'listings': listings,
+        'fave_jobs': fave_jobs,
+        'applied': applied,
+        'accepted': accepted,
+        'interviewing': interviewing,
+        'offer_extended': offer_extended,
+        'hired': hired,
+        'reject': reject
+    }
+    return render(request, 'profile.html', context)
 
 
 @login_required
 def edit_profile(request, id):
     prof = User.objects.get(id=id)
+    
     if request.method == "POST":
         form = EditProfileForm(request.POST)
+        print(form.is_valid(), form.errors)
         if form.is_valid():
             data = form.cleaned_data
-            prof.name = data["name"]
-            prof.username = data["username"]
-            prof.email = data["email"]
+            print('data')
+            prof.name = data["name"]            
             prof.bio = data["bio"]
             prof.experience = data["experience"]
             prof.skills = data["skills"]
             prof.contact_num = data["contact_num"]
             prof.save()
-        return HttpResponseRedirect(reverse("home"))
+        return HttpResponseRedirect("/profile/%s" % prof.username)
     form = EditProfileForm(initial={
         'name': prof.name,
         'username': prof.username,
@@ -86,7 +102,7 @@ def edit_profile(request, id):
         'skills': prof.skills,
         'contact_num': prof.contact_num,
     })
-    return render(request, "profile.html", {"form": form})
+    return render(request, "edit_profile.html", {"form": form})
 
 
 class logout_view(RedirectView):

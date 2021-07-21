@@ -110,3 +110,23 @@ nav {
   outline: none;
   text-decoration: none;
 }
+
+.home-container {
+  background: var(--light-color);
+  margin-top: 2rem;
+  padding: 2rem 2rem;
+  border-radius: 10px;
+}
+
+.home-subContainer {
+  margin: 3rem 0rem;
+}
+
+.home-subContainer h1,
+h5 {
+  font-weight: var(--heavy-fontWeight);
+}
+
+.home-subContainer a {
+  color: aquamarine;
+}
